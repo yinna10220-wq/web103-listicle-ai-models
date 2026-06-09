@@ -10,6 +10,11 @@ function fillTemplate(template, data) {
   return template.replace(/\{\{(\w+)\}\}/g, (_, key) => data[key] ?? "");
 }
 
+function send404(res) {
+  const html = fs.readFileSync(path.join(__dirname, "views/404.html"), "utf-8");
+  res.status(404).send(html);
+}
+
 app.get("/", (req, res) => {
   const cards = models
     .map(
@@ -69,13 +74,17 @@ app.get("/", (req, res) => {
 app.get("/models/:id", (req, res) => {
   const model = models.find((m) => m.id === parseInt(req.params.id, 10));
   if (!model) {
-    return res.status(404).send("<h1>404 — Model not found</h1><a href='/'>← Back</a>");
+    return send404(res);
   }
   const template = fs.readFileSync(
     path.join(__dirname, "views/model.html"),
     "utf-8"
   );
   res.send(fillTemplate(template, model));
+});
+
+app.use((req, res) => {
+  send404(res);
 });
 
 app.listen(PORT, () => {
