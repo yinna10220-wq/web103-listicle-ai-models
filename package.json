@@ -1,0 +1,25 @@
+{
+  "name": "web103-listicle-ai-models",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yinna10220-wq/web103-listicle-ai-models.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/yinna10220-wq/web103-listicle-ai-models/issues"
+  },
+  "homepage": "https://github.com/yinna10220-wq/web103-listicle-ai-models#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
