@@ -6,6 +6,8 @@ const models = require("./data/models");
 const app = express();
 const PORT = 3000;
 
+app.use(express.static(path.join(__dirname, "public")));
+
 function fillTemplate(template, data) {
   return template.replace(/\{\{(\w+)\}\}/g, (_, key) => data[key] ?? "");
 }
@@ -20,47 +22,38 @@ app.get("/", (req, res) => {
     .map(
       (m) => `
       <article>
-        <a href="/models/${m.id}" style="text-decoration:none;color:inherit;">
+        <div class="logo-wrap" data-initial="${m.name[0].toUpperCase()}">
           <img src="${m.logo}" alt="${m.name} logo"
-               style="height:48px;width:auto;object-fit:contain;margin-bottom:.75rem;display:block;"
-               onerror="this.style.display='none'">
-          <hgroup>
-            <h3 style="margin-bottom:.25rem;">${m.name}</h3>
-            <p style="margin:0;font-size:.85rem;">${m.company} &nbsp;·&nbsp; ${m.releaseYear}</p>
-          </hgroup>
-        </a>
-        <p style="margin-top:.75rem;font-size:.9rem;">${m.description}</p>
+               onerror="this.style.display='none';this.parentNode.classList.add('fallback')">
+        </div>
+        <hgroup>
+          <h3><a href="/models/${m.id}" style="text-decoration:none;color:inherit;">${m.name}</a></h3>
+          <p>${m.company} &nbsp;·&nbsp; ${m.releaseYear}</p>
+        </hgroup>
+        <p class="card-description">${m.description}</p>
         <footer>
-          <small><mark>${m.category}</mark></small>
-          &nbsp;
-          <a href="/models/${m.id}">View Details →</a>
+          <span class="badge">${m.category}</span>
+          <a href="/models/${m.id}">Details →</a>
         </footer>
       </article>`
     )
     .join("");
 
   const html = `<!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AI Model Directory</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
-  <style>
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.5rem;
-    }
-    .card-grid article { margin: 0; }
-  </style>
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-  <main class="container" style="padding-top: 2rem;">
-    <hgroup style="margin-bottom: 2rem;">
-      <h1>AI Model Directory</h1>
-      <p>Explore ${models.length} influential AI models across language, image, code, and search.</p>
-    </hgroup>
+  <main class="container">
+    <header class="hero">
+      <h1 class="hero-title">AI Model Directory</h1>
+      <p class="hero-sub">Explore ${models.length} influential AI models across language, image, code, and search.</p>
+    </header>
     <div class="card-grid">
       ${cards}
     </div>
@@ -80,7 +73,7 @@ app.get("/models/:id", (req, res) => {
     path.join(__dirname, "views/model.html"),
     "utf-8"
   );
-  res.send(fillTemplate(template, model));
+  res.send(fillTemplate(template, { ...model, initial: model.name[0].toUpperCase() }));
 });
 
 app.use((req, res) => {
