@@ -36,7 +36,7 @@ const models = [
     category: "Open Source",
     releaseYear: 2024,
     description: "Meta's open-source large language model available in 8B, 70B, and 405B parameter sizes, freely downloadable for research and commercial use.",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Meta-Logo.png",
+    logo: "https://commons.wikimedia.org/wiki/Special:FilePath/Meta_Platforms_Inc._logo.svg",
     website: "https://llama.meta.com"
   },
   {
@@ -56,7 +56,7 @@ const models = [
     category: "Image Generation",
     releaseYear: 2024,
     description: "Open-source text-to-image model with improved text rendering and compositional generation, runnable locally on consumer hardware.",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/1/10/Stability_AI_logo.svg",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/4/45/Stability.svg",
     website: "https://stability.ai/stable-diffusion"
   },
   {
@@ -66,7 +66,7 @@ const models = [
     category: "Code Assistant",
     releaseYear: 2023,
     description: "AI-first code editor built on VS Code that uses frontier models to autocomplete, refactor, and explain code across the entire codebase.",
-    logo: "https://cursor.sh/brand/app-logo-rounded.png",
+    logo: "https://cursor.com/favicon.svg",
     website: "https://cursor.sh"
   },
   {
@@ -76,7 +76,7 @@ const models = [
     category: "Search",
     releaseYear: 2022,
     description: "AI-powered answer engine that searches the web in real time and provides cited, conversational answers to complex questions.",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/5/59/Perplexity_AI_new_logo.svg",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/1/1d/Perplexity_AI_logo.svg",
     website: "https://perplexity.ai"
   }
 ];

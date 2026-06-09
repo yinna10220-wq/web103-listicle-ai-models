@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{name}} - AI Model Directory</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <style>
+    .model-logo {
+      height: 72px;
+      width: auto;
+      object-fit: contain;
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+    .meta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .meta-item small {
+      display: block;
+      color: var(--pico-muted-color);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.25rem;
+    }
+  </style>
+</head>
+<body>
+  <main class="container" style="max-width: 720px; padding-top: 2rem;">
+    <nav>
+      <a href="/">← Back to Directory</a>
+    </nav>
+
+    <article style="margin-top: 1.5rem;">
+      <header>
+        <img class="model-logo" src="{{logo}}" alt="{{name}} logo"
+             onerror="this.style.display='none'">
+        <hgroup>
+          <h1>{{name}}</h1>
+          <p>{{company}}</p>
+        </hgroup>
+      </header>
+
+      <div class="meta-grid">
+        <div class="meta-item">
+          <small>Category</small>
+          <strong>{{category}}</strong>
+        </div>
+        <div class="meta-item">
+          <small>Release Year</small>
+          <strong>{{releaseYear}}</strong>
+        </div>
+      </div>
+
+      <p>{{description}}</p>
+
+      <footer>
+        <a href="{{website}}" target="_blank" rel="noopener noreferrer" role="button">
+          Visit Official Website ↗
+        </a>
+      </footer>
+    </article>
+  </main>
+</body>
+</html>
